@@ -1,0 +1,58 @@
+{
+  "manifest_version": 3,
+  "name": "content collection",
+  "version": "1.0",
+
+  "description": "测试抓取页面内容",
+  "icons": {
+    "16": "/images/get_started16.png",
+    "32": "/images/get_started32.png",
+    "48": "/images/get_started48.png",
+    "128": "/images/get_started128.png"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "collection_pop",
+    "default_icon": {
+      "16": "/images/get_started16.png",
+      "32": "/images/get_started32.png",
+      "48": "/images/get_started48.png",
+      "128": "/images/get_started128.png"
+    }
+  },
+  "background": {
+    "service_worker": "js/background.js"
+  },
+  "permissions": [
+    "activeTab",
+    "storage",
+    "scripting",
+    "tabs",
+    "notifications",
+    "declarativeNetRequest"
+  ],
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "ruleset_1",
+        "enabled": true,
+        "path": "rule/rules_1.json"
+      }
+    ]
+  },
+  "host_permissions": [],
+  "devtools_page": "devtools.html",
+  "content_scripts": [
+    {
+      "all_frames": true,
+      "run_at": "document_end",
+      "matches": [
+        "https://www.baidu.com/s?*"
+      ],
+      "css": [],
+      "js": [
+        "js/jquery-3.6.0.min.js"
+      ]
+    }
+  ]
+}
